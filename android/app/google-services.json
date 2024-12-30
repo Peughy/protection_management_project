@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "349191754904",
+    "project_id": "protection-manager-6eff6",
+    "storage_bucket": "protection-manager-6eff6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:349191754904:android:4a36d634877717ca9c6ced",
+        "android_client_info": {
+          "package_name": "com.example.protection_manag"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXWJaZ5XZ-hXfwIcQqhSw2lKJ2OpILCLw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
