@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:protection_management_project/src/constants/color.dart';
 import 'package:protection_management_project/src/constants/size.dart';
-import 'package:protection_management_project/src/features/validate_project/protect_manager/follow_project_class.dart';
+import 'package:protection_management_project/src/features/protect_manager/follow_project_class.dart';
 
 class FollowProject extends StatelessWidget {
   const FollowProject({super.key});

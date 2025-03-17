@@ -6,7 +6,7 @@ import 'package:protection_management_project/src/constants/color.dart';
 import 'package:protection_management_project/src/constants/image.dart';
 import 'package:protection_management_project/src/constants/size.dart';
 import 'package:protection_management_project/src/constants/string.dart';
-import 'package:protection_management_project/src/features/validate_project/validate_project.dart';
+import 'package:protection_management_project/src/features/signin/signin_page.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({super.key});
@@ -33,7 +33,7 @@ class StartPage extends StatelessWidget {
                   shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)))
                 ),
                 onPressed: (){
-                  NavigationPage.changePage(context, const ValidateProject());
+                  NavigationPage.changePage(context, const SigninPage());
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

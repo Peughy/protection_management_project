@@ -3,9 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:protection_management_project/src/constants/color.dart';
 import 'package:protection_management_project/src/constants/image.dart';
 import 'package:protection_management_project/src/features/validate_project/infos_page.dart';
-import 'package:protection_management_project/src/features/validate_project/protect_manager/add_project.dart';
-import 'package:protection_management_project/src/features/validate_project/protect_manager/follow_project.dart';
-import 'package:protection_management_project/src/features/validate_project/protect_manager/list_project.dart';
+import 'package:protection_management_project/src/features/protect_manager/add_project.dart';
+import 'package:protection_management_project/src/features/protect_manager/follow_project.dart';
+import 'package:protection_management_project/src/features/protect_manager/list_project.dart';
 
 class ProtectManager extends StatefulWidget {
   const ProtectManager({super.key});
