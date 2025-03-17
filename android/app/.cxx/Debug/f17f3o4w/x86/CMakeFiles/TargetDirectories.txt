@@ -1,0 +1,2 @@
+D:/MOBILE APPS/protection_management_project/android/app/.cxx/Debug/f17f3o4w/x86/CMakeFiles/edit_cache.dir
+D:/MOBILE APPS/protection_management_project/android/app/.cxx/Debug/f17f3o4w/x86/CMakeFiles/rebuild_cache.dir

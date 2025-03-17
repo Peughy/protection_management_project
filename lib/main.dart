@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:protection_management_project/firebase_options.dart';
 import 'package:protection_management_project/src/constants/color.dart';
+import 'package:protection_management_project/src/features/validate_project/protect_manager/protect_manager.dart';
 import 'package:protection_management_project/src/features/validate_project/validate_project.dart';
 
 void main() async {
