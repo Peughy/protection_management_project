@@ -6,7 +6,7 @@ import 'package:protection_management_project/src/constants/color.dart';
 import 'package:protection_management_project/src/constants/image.dart';
 import 'package:protection_management_project/src/constants/size.dart';
 import 'package:protection_management_project/src/constants/string.dart';
-import 'package:protection_management_project/src/features/signin/signin_page.dart';
+import 'package:protection_management_project/src/features/auth_manager/signin_page.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({super.key});
@@ -16,14 +16,14 @@ class StartPage extends StatelessWidget {
     // media size
     final mediaSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: whiteColor,
+      // backgroundColor: whiteColor,
       body: Padding(
         padding:  EdgeInsets.symmetric(horizontal: pad, vertical: pad*2),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image(image: AssetImage(protectMain), width: 250, height: 250,),
+            Image(image: AssetImage(protectBlue), width: 250, height: 250,),
             SizedBox(
               width: mediaSize.width,
               child: ElevatedButton(

@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:protection_management_project/src/commons/navigation_page.dart';
 import 'package:protection_management_project/src/constants/color.dart';
 import 'package:protection_management_project/src/features/validate_project/all_project/all_project.dart';
-import 'package:protection_management_project/src/features/validate_project/infos_page.dart';
+import 'package:protection_management_project/src/features/profil_manager/views/profil_page.dart';
 import 'package:protection_management_project/src/features/validate_project/my_project/my_project.dart';
 
 class ValidateProject extends StatefulWidget {
@@ -18,6 +18,13 @@ class _ValidateProjectState extends State<ValidateProject> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.dark().copyWith(
+          primary: mainColor
+        ),
+        useMaterial3: true,
+        brightness: Brightness.dark
+      ),
       home: DefaultTabController(length: 2, child: Scaffold(
         appBar: AppBar(
           backgroundColor: mainColor,
@@ -29,7 +36,7 @@ class _ValidateProjectState extends State<ValidateProject> {
             Padding(
               padding: const EdgeInsets.only(right: 12.0),
               child: IconButton(onPressed: (){
-                NavigationPage.changePage(context,  InfosPage(showBar: true,));
+                NavigationPage.changePage(context,  ProfilPage(showBar: true,));
               }, icon: Icon(Icons.menu, color: whiteColor, size: 32,)),
             )
           ],

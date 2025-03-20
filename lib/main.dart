@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:protection_management_project/firebase_options.dart';
 import 'package:protection_management_project/src/constants/color.dart';
+import 'package:protection_management_project/src/features/auth_manager/signin_page.dart';
 import 'package:protection_management_project/src/features/protect_manager/protect_manager.dart';
 import 'package:protection_management_project/src/features/validate_project/validate_project.dart';
 import 'package:protection_management_project/start_page.dart';
@@ -24,10 +25,13 @@ class MyApp extends StatelessWidget {
       title: 'Protection Management Projects',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: mainColor),
+        colorScheme: ColorScheme.dark().copyWith(
+          primary: mainColor
+        ),
         useMaterial3: true,
+        brightness: Brightness.dark
       ),
-      home: const StartPage(),
+      home: const SigninPage(),
     );
   }
 }
