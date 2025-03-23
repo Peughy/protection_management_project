@@ -44,17 +44,18 @@ class SigninController {
               jokers: _jokers);
         }
         else{
-          SnackbarWidget(text: "Nous avons rencontrez une erreur!\nveuillez reessayer!").snackbarWidget(context);
+          SnackbarWidget(text: "Nous avons rencontrez une erreur - veuillez reessayer").snackbarWidget(context);
         }
       }
     } on FirebaseAuthException catch (e) {
+      debugPrint("=================================== erreur: ${e.code} - ${e.message}");
       if (e.code == "invalid-email") {
         SnackbarWidget(
-          text: "L'adresse mail ne correspond pas!",
+          text: "L'adresse mail ne correspond pas",
         ).snackbarWidget(context);
       } else if (e.code == "invalid-credential") {
         SnackbarWidget(
-          text: "L'utlisateur n'as pas ete trouve!",
+          text: "L'utlisateur n'as pas ete trouve",
         ).snackbarWidget(context);
       } else if (e.code == "network-request-failed") {
         SnackbarWidget(
