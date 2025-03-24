@@ -1,9 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:protection_management_project/src/commons/navigation_page.dart';
-import 'package:protection_management_project/src/features/auth_manager/models/user_model.dart';
 
 class ProfilController extends GetxController {
   final _auth = FirebaseAuth.instance;
