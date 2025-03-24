@@ -48,7 +48,6 @@ class SigninController {
         }
       }
     } on FirebaseAuthException catch (e) {
-      debugPrint("=================================== erreur: ${e.code} - ${e.message}");
       if (e.code == "invalid-email") {
         SnackbarWidget(
           text: "L'adresse mail ne correspond pas",

@@ -64,7 +64,7 @@ class ProjectTimingWidget extends StatelessWidget {
               Row(
                 children: [
                   Icon(
-                    Icons.lock_clock,
+                    Icons.lock_clock_rounded,
                     size: 28,
                     color: Colors.red,
                   ),

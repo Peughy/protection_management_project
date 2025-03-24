@@ -48,7 +48,7 @@ class _ValidateProjectState extends State<ValidateProject> {
                               isDarkModeNotifier.value = !isDark;
                             },
                             icon: Icon(
-                              isDark ? Icons.sunny : Icons.nightlight_round,
+                              isDark ? Icons.sunny : Icons.bedtime_sharp,
                               color: whiteColor,
                               size: 28,
                             )),

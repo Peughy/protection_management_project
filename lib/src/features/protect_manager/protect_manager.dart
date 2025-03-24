@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:protection_management_project/src/constants/color.dart';
 import 'package:protection_management_project/src/constants/image.dart';
 import 'package:protection_management_project/src/constants/notifier.dart';
+import 'package:protection_management_project/src/features/auth_manager/controllers/signout_controller.dart';
+import 'package:protection_management_project/src/features/auth_manager/signin_page.dart';
 import 'package:protection_management_project/src/features/profil_manager/views/profil_page.dart';
 import 'package:protection_management_project/src/features/protect_manager/add_project.dart';
 import 'package:protection_management_project/src/features/protect_manager/follow_project.dart';
@@ -40,7 +42,7 @@ class _ProtectManagerState extends State<ProtectManager> {
                         isDarkModeNotifier.value = !isDark;
                       },
                       icon: Icon(
-                        isDark ? Icons.sunny : Icons.nightlight_round,
+                        isDark ? Icons.sunny : Icons.bedtime_sharp,
                         color: whiteColor,
                         size: 28,
                       )),
@@ -54,7 +56,6 @@ class _ProtectManagerState extends State<ProtectManager> {
               ),
             ),
             drawer: Drawer(
-              // backgroundColor: whiteColor,
               elevation: 20,
               child: ListView(
                 padding: const EdgeInsets.all(0),
@@ -131,6 +132,12 @@ class _ProtectManagerState extends State<ProtectManager> {
                     ),
                   ),
                   ListTile(
+                    onTap: (){
+                     SignoutController().signout();
+                     Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return SigninPage();
+                     }));
+                    },
                     leading: Icon(
                       Icons.logout,
                       size: 26,

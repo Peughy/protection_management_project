@@ -1,38 +1,54 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:protection_management_project/src/commons/navigation_page.dart';
 import 'package:protection_management_project/src/features/auth_manager/models/user_model.dart';
 
-class ProfilController {
+class ProfilController extends GetxController {
   final _auth = FirebaseAuth.instance;
   final _bd = FirebaseFirestore.instance;
-  late UserModel _userModel;
 
-  // verified user state
-  Future<UserModel?> getUserInformation() async {
-    _auth.authStateChanges().listen((User? user) {
+  var isLoading = true.obs;
+  var userData = {}.obs;
+  var userEmail = "".obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchUserData();
+    getUserEmail();
+  }
+
+  Future<void> fetchUserData() async {
+    try {
+      await Future.delayed(
+          Duration(seconds: 2)); // Laisse Firebase se rafraîchir
+      FirebaseAuth.instance.currentUser?.reload();
+      User? user = _auth.currentUser;
       if (user != null) {
-        String uid = user.uid;
-        final userRef = _bd.collection("user").doc(uid);
-
-        userRef.get().then((DocumentSnapshot doc) {
-          final data = doc.data() as Map<String, dynamic>;
-          _userModel = UserModel(
-              uid: uid,
-              email: user.email,
-              compte: data['compte'],
-              nom: data['nom'],
-              prenom: data['prenom'],
-              jokers: data['jokers']);
-
-          return _userModel;
-
-        }, onError: (e) {
-          debugPrint("Erreur: ${e.toString()}");
-        });
+        DocumentSnapshot userDoc =
+            await _bd.collection('user').doc(user.uid).get();
+        if (userDoc.exists) {
+          userData.value = userDoc.data() as Map<String, dynamic>;
+        }
       }
-    });
+    } catch (e) {
+      print("Erreur lors de la récupération des données : $e");
+    } finally {
+      isLoading.value = false;
+    }
+  }
 
-    return null;
+  void getUserEmail() {
+    User? user = _auth.currentUser;
+    if (user != null) {
+      userEmail.value = user.email ?? "Email non disponible";
+    }
+  }
+
+  Future<void> signout() async {
+    await _auth.signOut();
+    await Future.delayed(Duration(seconds: 1));
   }
 }
