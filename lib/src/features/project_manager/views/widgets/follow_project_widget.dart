@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:protection_management_project/src/constants/color.dart';
 import 'package:protection_management_project/src/constants/size.dart';
-import 'package:protection_management_project/src/features/protect_manager/follow_project_class.dart';
+import 'package:protection_management_project/src/features/project_manager/models/follow_project_model.dart';
 
 class FollowProject extends StatelessWidget {
   const FollowProject({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<FollowProjectClass> followProjectClass = [
-      FollowProjectClass(name: "Milie Flore", totalProject: 5, realizeProject: 3, loadinProject: 1, rejectProject: 1),
-      FollowProjectClass(name: "Rachelle Bagao", totalProject: 3, realizeProject: 2, loadinProject: 1, rejectProject: 0),
-      FollowProjectClass(name: "Rachelle Bagao", totalProject: 3, realizeProject: 2, loadinProject: 1, rejectProject: 0),
-      FollowProjectClass(name: "Rachelle Bagao", totalProject: 3, realizeProject: 2, loadinProject: 1, rejectProject: 0),
-      FollowProjectClass(name: "Rachelle Bagao", totalProject: 3, realizeProject: 2, loadinProject: 1, rejectProject: 0),
+    List<FollowProjectModel> followProjectModel = [
+      FollowProjectModel(name: "Milie Flore", totalProject: 5, realizeProject: 3, loadinProject: 1, rejectProject: 1),
+      FollowProjectModel(name: "Rachelle Bagao", totalProject: 3, realizeProject: 2, loadinProject: 1, rejectProject: 0),
+      FollowProjectModel(name: "Rachelle Bagao", totalProject: 3, realizeProject: 2, loadinProject: 1, rejectProject: 0),
+      FollowProjectModel(name: "Rachelle Bagao", totalProject: 3, realizeProject: 2, loadinProject: 1, rejectProject: 0),
+      FollowProjectModel(name: "Rachelle Bagao", totalProject: 3, realizeProject: 2, loadinProject: 1, rejectProject: 0),
   ];
   
     return Column(
@@ -25,14 +25,14 @@ class FollowProject extends StatelessWidget {
             child: Text("SUIVI DE PROJET", style: GoogleFonts.montserrat(fontSize: 32, fontWeight: FontWeight.bold, color: whiteColor, backgroundColor: mainColor),)),
         Expanded(
           child: ListView.builder(
-                  itemCount: followProjectClass.length,
+                  itemCount: followProjectModel.length,
                   itemBuilder: (context, idx){
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(height: 48),
-                        Text(followProjectClass[idx].name, style: GoogleFonts.montserrat(fontSize: 22, color: mainColor, fontWeight: FontWeight.bold),),
+                        Text(followProjectModel[idx].name, style: GoogleFonts.montserrat(fontSize: 22, color: mainColor, fontWeight: FontWeight.bold),),
                         SizedBox(height: pad,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -42,7 +42,7 @@ class FollowProject extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text("${followProjectClass[idx].totalProject}", style: GoogleFonts.montserrat(fontSize: 26, fontWeight: FontWeight.bold, color: mainColor),),
+                                Text("${followProjectModel[idx].totalProject}", style: GoogleFonts.montserrat(fontSize: 26, fontWeight: FontWeight.bold, color: mainColor),),
                                 Text("Projet totals", style: GoogleFonts.montserrat(fontSize: 18),),
                                 ],
                             ),
@@ -51,7 +51,7 @@ class FollowProject extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text("${followProjectClass[idx].realizeProject}", style: GoogleFonts.montserrat(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.green),),
+                                Text("${followProjectModel[idx].realizeProject}", style: GoogleFonts.montserrat(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.green),),
                                 Text("Projet Realises", style: GoogleFonts.montserrat(fontSize: 18),),
                                 ],
                             ),
@@ -66,7 +66,7 @@ class FollowProject extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text("${followProjectClass[idx].loadinProject}", style: GoogleFonts.montserrat(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.grey),),
+                                Text("${followProjectModel[idx].loadinProject}", style: GoogleFonts.montserrat(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.grey),),
                                 Text("Projet en cous", style: GoogleFonts.montserrat(fontSize: 18),),
                                 ],
                             ),
@@ -75,7 +75,7 @@ class FollowProject extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text("${followProjectClass[idx].rejectProject}", style: GoogleFonts.montserrat(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.red),),
+                                Text("${followProjectModel[idx].rejectProject}", style: GoogleFonts.montserrat(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.red),),
                                 Text("Projet pas atteint", style: GoogleFonts.montserrat(fontSize: 18),),
                                 ],
                             ),

@@ -4,11 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 // ignore: must_be_immutable
 class SnackbarWidget {
   String text;
-  SnackbarWidget({required this.text});
+  Color? color = Colors.red;
+  SnackbarWidget({required this.text, this.color});
 
   dynamic snackbarWidget(BuildContext context) {
     return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: Colors.red,
+        backgroundColor: color,
         content: SelectableText(
           showCursor: true,
           text,

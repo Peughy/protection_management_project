@@ -6,18 +6,18 @@ import 'package:protection_management_project/src/constants/notifier.dart';
 import 'package:protection_management_project/src/features/auth_manager/controllers/signout_controller.dart';
 import 'package:protection_management_project/src/features/auth_manager/signin_page.dart';
 import 'package:protection_management_project/src/features/profil_manager/views/profil_page.dart';
-import 'package:protection_management_project/src/features/protect_manager/add_project.dart';
-import 'package:protection_management_project/src/features/protect_manager/follow_project.dart';
-import 'package:protection_management_project/src/features/protect_manager/list_project.dart';
+import 'package:protection_management_project/src/features/project_manager/views/widgets/add_project_widget.dart';
+import 'package:protection_management_project/src/features/project_manager/views/widgets/follow_project_widget.dart';
+import 'package:protection_management_project/src/features/project_manager/views/widgets/list_project_widget.dart';
 
-class ProtectManager extends StatefulWidget {
-  const ProtectManager({super.key});
+class ProjectManager extends StatefulWidget {
+  const ProjectManager({super.key});
 
   @override
-  State<ProtectManager> createState() => _ProtectManagerState();
+  State<ProjectManager> createState() => _ProjectManagerState();
 }
 
-class _ProtectManagerState extends State<ProtectManager> {
+class _ProjectManagerState extends State<ProjectManager> {
   int _currentPage = 0;
 
   @override
@@ -152,7 +152,7 @@ class _ProtectManagerState extends State<ProtectManager> {
             ),
             body: [
               ListProject(),
-              AddProject(),
+              AddProjectWidget(),
               FollowProject(),
               ProfilPage(
                 showBar: false,

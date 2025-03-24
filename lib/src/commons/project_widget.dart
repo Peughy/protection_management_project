@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:protection_management_project/src/constants/color.dart';
 import 'package:protection_management_project/src/constants/notifier.dart';
 import 'package:protection_management_project/src/constants/size.dart';
-import 'package:protection_management_project/src/features/validate_project/all_project/all_project_class.dart';
+import 'package:protection_management_project/src/features/project_manager/models/project_model.dart';
 
 class ProjectWidget extends StatelessWidget {
   const ProjectWidget({
@@ -11,7 +11,7 @@ class ProjectWidget extends StatelessWidget {
     required this.allProjects,
   });
 
-  final AllProjectClass allProjects;
+  final ProjectModel allProjects;
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +30,15 @@ class ProjectWidget extends StatelessWidget {
               )),
           child: Column(
             children: [
-              Text(
-                allProjects.nomProject,
-                style: GoogleFonts.montserrat(
-                    fontSize: 22,
-                    color: mainColor,
-                    fontWeight: FontWeight.w600),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  allProjects.nomProjet,
+                  style: GoogleFonts.montserrat(
+                      fontSize: 22,
+                      color: mainColor,
+                      fontWeight: FontWeight.w600),
+                ),
               ),
               const SizedBox(
                 height: 12,
@@ -52,8 +55,18 @@ class ProjectWidget extends StatelessWidget {
                       style: GoogleFonts.montserrat(
                           fontSize: 16,
                           color: isDark ? Colors.white : const Color.fromARGB(255, 55, 54, 54)))),
+                          const SizedBox(
+                height: 24,
+              ),
+              Align(
+                  alignment: Alignment.topLeft,
+                  child: Text("~ ${allProjects.descriptionProjet}",
+                      style: GoogleFonts.montserrat(
+                          fontSize: 18,
+                          fontStyle: FontStyle.italic,
+                          color: isDark ? Colors.white : const Color.fromARGB(255, 55, 54, 54)))),
               const SizedBox(
-                height: 12,
+                height: 24,
               ),
               Divider(
                 height: 1,
@@ -72,7 +85,7 @@ class ProjectWidget extends StatelessWidget {
                     width: 8,
                   ),
                   Text(
-                    allProjects.author,
+                    "Aucun",
                     style: TextStyle(color: mainColor, fontSize: 16),
                   )
                 ],

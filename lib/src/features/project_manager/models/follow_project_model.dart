@@ -1,11 +1,11 @@
-class FollowProjectClass {
+class FollowProjectModel {
   String name;
   int totalProject;
   int realizeProject;
   int loadinProject;
   int rejectProject;
 
-  FollowProjectClass({
+  FollowProjectModel({
     required this.name,
     required this.totalProject,
     required this.realizeProject,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:protection_management_project/src/commons/project_widget.dart';
 import 'package:protection_management_project/src/constants/size.dart';
 import 'package:protection_management_project/src/features/validate_project/all_project/all_project_class.dart';
 
@@ -24,7 +23,7 @@ class _AllProjectState extends State<AllProject> {
         child: ListView.builder(itemCount: allProjects.length, itemBuilder: (BuildContext context, int val){
           return Padding(
             padding:  EdgeInsets.symmetric(horizontal: pad, vertical: 12),
-            child: ProjectWidget(allProjects: allProjects[val]),
+            // child: ProjectWidget(allProjects: allProjects[val]),
           );
         }),
       ),
