@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:protection_management_project/src/commons/project_widget.dart';
 import 'package:protection_management_project/src/constants/color.dart';
 import 'package:protection_management_project/src/constants/size.dart';
+import 'package:protection_management_project/src/features/auth_manager/models/user_model_firestore.dart';
+import 'package:protection_management_project/src/features/project_manager/controller/list_projet_controller.dart';
 import 'package:protection_management_project/src/features/project_manager/models/project_model.dart';
 
 class ListProject extends StatelessWidget {
@@ -11,8 +13,6 @@ class ListProject extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    List<String> projectRealizator = ["milie@gmail.com", "rachelle@gmail.com"];
     return StreamBuilder(
         stream: FirebaseFirestore.instance.collection("projets").snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -50,13 +50,29 @@ class ListProject extends StatelessWidget {
                     child: GestureDetector(
                         onLongPress: () {
                           showModalBottomSheet(
+                              // ignore: deprecated_member_use
                               barrierColor: Colors.black.withOpacity(0.5),
                               isScrollControlled: true,
                               elevation: 12,
                               context: context,
                               builder: (context) {
+                                return StreamBuilder(stream: FirebaseFirestore.instance.collection("user").snapshots(), 
+                                builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
+                                
+                                if(!snapshot.hasData){
+                                  return Center(
+                                    child: Text("Pas d'utilisateur", style: GoogleFonts.roboto(fontSize: 18),)
+                                  );
+                                }
+                                if(snapshot.connectionState == ConnectionState.waiting){
+                                  return Center(child: CircularProgressIndicator(color: mainColor,),);
+                                }
+
+                                // filter user info
+                                List<Map<String, dynamic>> userDocuments = ListProjetController().filteredUser(snapshot.data!.docs);
+
                                 return Container(
-                                  height: 300,
+                                  height: (userDocuments.length <= 2) ? 300 : 500,
                                   padding: EdgeInsets.all(pad),
                                   width: MediaQuery.of(context).size.width,
                                   // color: whiteColor,
@@ -75,8 +91,10 @@ class ListProject extends StatelessWidget {
                                       ),
                                       Expanded(
                                         child: ListView.builder(
-                                            itemCount: projectRealizator.length,
+                                            itemCount: userDocuments.length,
                                             itemBuilder: (context, idx) {
+                                              Map<String, dynamic> userInfo = userDocuments[idx];
+                                              UserModelFirestore userModelFirestore = UserModelFirestore.fromMap(userInfo);
                                               return Column(
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
@@ -96,7 +114,7 @@ class ListProject extends StatelessWidget {
                                                                 shape: BoxShape
                                                                     .circle),
                                                         child: Text(
-                                                          projectRealizator[idx]
+                                                          userModelFirestore.nom!
                                                                   [0]
                                                               .toUpperCase(),
                                                           style: GoogleFonts
@@ -110,7 +128,7 @@ class ListProject extends StatelessWidget {
                                                         width: 6,
                                                       ),
                                                       Text(
-                                                        projectRealizator[idx],
+                                                        "${userModelFirestore.nom} ${userModelFirestore.prenom}",
                                                         style: GoogleFonts
                                                             .montserrat(
                                                                 fontSize: 22),
@@ -126,7 +144,7 @@ class ListProject extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                );
+                                );                                });
                               });
                         },
                         child: ProjectWidget(allProjects: ProjectModel.fromMap(projectsDocuments[val].data() as Map<String, dynamic>))),

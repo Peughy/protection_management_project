@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:protection_management_project/src/constants/color.dart';
 import 'package:protection_management_project/src/constants/notifier.dart';
 import 'package:protection_management_project/src/constants/size.dart';
-import 'package:protection_management_project/src/features/validate_project/my_project/my_project_class.dart';
+import 'package:protection_management_project/src/features/project_manager/models/project_model.dart';
 
 class ProjectTimingWidget extends StatelessWidget {
-  const ProjectTimingWidget({
+   ProjectTimingWidget({
     super.key,
     required this.projects,
   });
 
-  final MyProjectClass projects;
+  final ProjectModel projects;
+  final DateFormat formatter = DateFormat('EEEE, d MMMM y', 'fr_FR');
+
+  String dateCounters(DateTime dateDebut, DateTime dateFin){
+
+    // 🔹 Calcul de la différence
+    Duration difference = dateFin.difference(dateDebut);
+
+    // 🔹 Extraction des valeurs
+    int days = difference.inDays; // Nombre de jours
+    int hours = difference.inHours % 24; // Heures restantes
+    int minutes = difference.inMinutes % 60; // Minutes restantes
+    int seconds = difference.inSeconds % 60; // Secondes restantes
+
+    // 🔹 Affichage du résultat
+    return "$days jours, $hours h, $minutes mm, $seconds s";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +48,7 @@ class ProjectTimingWidget extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                projects.nomProject,
+                projects.nomProjet,
                 style: GoogleFonts.montserrat(
                     fontSize: 22,
                     color: mainColor,
@@ -42,13 +59,13 @@ class ProjectTimingWidget extends StatelessWidget {
               ),
               Align(
                   alignment: Alignment.topLeft,
-                  child: Text("Du ${projects.dateDebut}",
+                  child: Text("Du ${formatter.format(projects.dateDebut)}",
                       style: GoogleFonts.montserrat(
                           fontSize: 16,
                           color: isDark ? Colors.white : const Color.fromARGB(255, 55, 54, 54)))),
               Align(
                   alignment: Alignment.topLeft,
-                  child: Text("Au ${projects.dateDebut}",
+                  child: Text("Au ${formatter.format(projects.dateFin)}",
                       style: GoogleFonts.montserrat(
                           fontSize: 16,
                           color: isDark ? Colors.white : const Color.fromARGB(255, 55, 54, 54)))),
@@ -61,7 +78,8 @@ class ProjectTimingWidget extends StatelessWidget {
               const SizedBox(
                 height: 12,
               ),
-              Row(
+              Wrap(
+                crossAxisAlignment: WrapCrossAlignment.start,
                 children: [
                   Icon(
                     Icons.lock_clock_rounded,
@@ -72,7 +90,7 @@ class ProjectTimingWidget extends StatelessWidget {
                     width: 8,
                   ),
                   Text(
-                    projects.counter,
+                    dateCounters(projects.dateDebut, projects.dateFin),
                     style: TextStyle(color: Colors.red, fontSize: 20),
                   )
                 ],

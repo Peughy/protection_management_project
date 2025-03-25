@@ -24,3 +24,4 @@ class UserModel {
   String get getCompte => compte;
   int get getJokers => jokers;
 }
+

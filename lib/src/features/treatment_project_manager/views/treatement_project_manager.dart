@@ -3,18 +3,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:protection_management_project/src/commons/navigation_page.dart';
 import 'package:protection_management_project/src/constants/color.dart';
 import 'package:protection_management_project/src/constants/notifier.dart';
-import 'package:protection_management_project/src/features/validate_project/all_project/all_project.dart';
+import 'package:protection_management_project/src/features/treatment_project_manager/views/widgets/all_project_widget.dart';
 import 'package:protection_management_project/src/features/profil_manager/views/profil_page.dart';
-import 'package:protection_management_project/src/features/validate_project/my_project/my_project.dart';
+import 'package:protection_management_project/src/features/treatment_project_manager/views/widgets/my_project_widget.dart';
 
-class ValidateProject extends StatefulWidget {
-  const ValidateProject({super.key});
+class TreatementProjectManager extends StatefulWidget {
+  const TreatementProjectManager({super.key});
 
   @override
-  State<ValidateProject> createState() => _ValidateProjectState();
+  State<TreatementProjectManager> createState() => _TreatementProjectManagerState();
 }
 
-class _ValidateProjectState extends State<ValidateProject> {
+class _TreatementProjectManagerState extends State<TreatementProjectManager> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
@@ -89,7 +89,7 @@ class _ValidateProjectState extends State<ValidateProject> {
                     ),
                   ),
                   body: TabBarView(
-                      children: [const MyProject(), const AllProject()]),
+                      children: [const MyProjectWidget(), const AllProjectWidget()]),
                 )),
           );
         });

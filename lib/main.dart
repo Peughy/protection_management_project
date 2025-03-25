@@ -1,13 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:protection_management_project/firebase_options.dart';
 import 'package:protection_management_project/src/constants/color.dart';
 import 'package:protection_management_project/src/constants/notifier.dart';
 import 'package:protection_management_project/src/features/project_manager/views/project_manager.dart';
+import 'package:protection_management_project/src/features/treatment_project_manager/views/treatement_project_manager.dart';
 import 'package:protection_management_project/start_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting();
   await Firebase.initializeApp(
   options: DefaultFirebaseOptions.currentPlatform,
 );
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         brightness: isDark ? Brightness.dark : Brightness.light
       ),
-      home: const ProjectManager(),
+      home: const TreatementProjectManager(),
     );
     },);
   }

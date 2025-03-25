@@ -9,7 +9,7 @@ import 'package:protection_management_project/src/constants/size.dart';
 import 'package:protection_management_project/src/constants/string.dart';
 import 'package:protection_management_project/src/features/auth_manager/controllers/signin_controller.dart';
 import 'package:protection_management_project/src/features/project_manager/views/project_manager.dart';
-import 'package:protection_management_project/src/features/validate_project/validate_project.dart';
+import 'package:protection_management_project/src/features/treatment_project_manager/views/treatement_project_manager.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -33,7 +33,7 @@ class _SigninPageState extends State<SigninPage> {
 
     if (user != null) {
       if (user.compte == "dev") {
-        NavigationPage.changePage(context, ValidateProject());
+        NavigationPage.changePage(context, TreatementProjectManager());
       } else {
         NavigationPage.changePage(context, ProjectManager());
       }
