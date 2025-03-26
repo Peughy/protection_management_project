@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -6,29 +8,68 @@ import 'package:protection_management_project/src/constants/notifier.dart';
 import 'package:protection_management_project/src/constants/size.dart';
 import 'package:protection_management_project/src/features/project_manager/models/project_model.dart';
 
-class ProjectTimingWidget extends StatelessWidget {
-   ProjectTimingWidget({
+class ProjectTimingWidget extends StatefulWidget {
+  const ProjectTimingWidget({
     super.key,
     required this.projects,
   });
 
   final ProjectModel projects;
+
+  @override
+  State<ProjectTimingWidget> createState() => _ProjectTimingWidgetState();
+}
+
+class _ProjectTimingWidgetState extends State<ProjectTimingWidget> {
   final DateFormat formatter = DateFormat('EEEE, d MMMM y', 'fr_FR');
 
-  String dateCounters(DateTime dateDebut, DateTime dateFin){
+   // ounters function
+  DateTime toDay = DateTime.now();
+  // Duration difference = widget.projects.dateFin.difference(toDay);
 
-    // 🔹 Calcul de la différence
-    Duration difference = dateFin.difference(dateDebut);
+  // int days = difference.inDays;
+  //   int hours = difference.inHours;
+  //   int minutes = difference.inMinutes;
+  //   int seconds = difference.inSeconds;
+  int days = 3;
+    int hours = 23;
+    int minutes = 59;
+    int seconds = 59;
+    Timer? timer;
 
-    // 🔹 Extraction des valeurs
-    int days = difference.inDays; // Nombre de jours
-    int hours = difference.inHours % 24; // Heures restantes
-    int minutes = difference.inMinutes % 60; // Minutes restantes
-    int seconds = difference.inSeconds % 60; // Secondes restantes
+    void startTimer(){
+      timer = Timer.periodic(Duration(seconds: 1), (timer){
+        setState(() {
+          if(seconds > 0){
+            seconds--;
+          }else if(minutes > 0){
+              minutes--;
+              seconds = 59;
+            }
+          else if(hours > 0){
+            hours--;
+            minutes = 59;
+            seconds = 59;
+          }
+          else if(days > 0){
+            days--;
+            hours = 23;
+            minutes = 59;
+            seconds = 59;
+          }
+        });
+      });
+    }
 
-    // 🔹 Affichage du résultat
-    return "$days jours, $hours h, $minutes mm, $seconds s";
-  }
+    String formatNumber(int number){
+      return number.toString().padLeft(2, '0');
+    }
+
+    @override
+    void initState(){
+      super.initState();
+      startTimer();
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -40,18 +81,46 @@ class ProjectTimingWidget extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(radius),
               border: Border(
-                top: BorderSide(color: mainColor, width: 2),
-                bottom: BorderSide(color: mainColor, width: 2),
-                left: BorderSide(color: mainColor, width: 2),
-                right: BorderSide(color: mainColor, width: 2),
+                top: BorderSide(
+                    color: (widget.projects.etat == "en cours")
+                        ? mainColor
+                        : (widget.projects.etat == "annuler")
+                            ? Colors.red
+                            : Colors.green,
+                    width: 2),
+                bottom: BorderSide(
+                    color: (widget.projects.etat == "en cours")
+                        ? mainColor
+                        : (widget.projects.etat == "annuler")
+                            ? Colors.red
+                            : Colors.green,
+                    width: 2),
+                left: BorderSide(
+                    color: (widget.projects.etat == "en cours")
+                        ? mainColor
+                        : (widget.projects.etat == "annuler")
+                            ? Colors.red
+                            : Colors.green,
+                    width: 2),
+                right: BorderSide(
+                    color: (widget.projects.etat == "en cours")
+                        ? mainColor
+                        : (widget.projects.etat == "annuler")
+                            ? Colors.red
+                            : Colors.green,
+                    width: 2),
               )),
           child: Column(
             children: [
               Text(
-                projects.nomProjet,
+                widget.projects.nomProjet,
                 style: GoogleFonts.montserrat(
                     fontSize: 22,
-                    color: mainColor,
+                    color: (widget.projects.etat == "en cours")
+                        ? mainColor
+                        : (widget.projects.etat == "annuler")
+                            ? Colors.red
+                            : Colors.green,
                     fontWeight: FontWeight.w600),
               ),
               const SizedBox(
@@ -59,16 +128,21 @@ class ProjectTimingWidget extends StatelessWidget {
               ),
               Align(
                   alignment: Alignment.topLeft,
-                  child: Text("Du ${formatter.format(projects.dateDebut)}",
+                  child: Text(
+                      "Du ${formatter.format(widget.projects.dateDebut)}",
                       style: GoogleFonts.montserrat(
                           fontSize: 16,
-                          color: isDark ? Colors.white : const Color.fromARGB(255, 55, 54, 54)))),
+                          color: isDark
+                              ? Colors.white
+                              : const Color.fromARGB(255, 55, 54, 54)))),
               Align(
                   alignment: Alignment.topLeft,
-                  child: Text("Au ${formatter.format(projects.dateFin)}",
+                  child: Text("Au ${formatter.format(widget.projects.dateFin)}",
                       style: GoogleFonts.montserrat(
                           fontSize: 16,
-                          color: isDark ? Colors.white : const Color.fromARGB(255, 55, 54, 54)))),
+                          color: isDark
+                              ? Colors.white
+                              : const Color.fromARGB(255, 55, 54, 54)))),
               const SizedBox(
                 height: 12,
               ),
@@ -90,7 +164,9 @@ class ProjectTimingWidget extends StatelessWidget {
                     width: 8,
                   ),
                   Text(
-                    dateCounters(projects.dateDebut, projects.dateFin),
+                    (widget.projects.etat != "annuler")
+                        ? "${formatNumber(days)} jour(s) - ${formatNumber(hours)}:${formatNumber(minutes)}:${formatNumber(seconds)}"
+                        : "DIFFICILE",
                     style: TextStyle(color: Colors.red, fontSize: 20),
                   )
                 ],

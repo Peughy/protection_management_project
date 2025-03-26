@@ -22,8 +22,8 @@ class _AddProjectWidgetState extends State<AddProjectWidget> {
   String dateFinText = "FIN";
 
   void setProject(
-      String nom, String desc, DateTime? debut, DateTime? fin) async {
-    await addProjectController.addProject(nom, desc, debut, fin);
+      String nom, String desc, String etat, DateTime? debut, DateTime? fin) async {
+    await addProjectController.addProject(nom, desc, etat, debut, fin);
   }
 
   @override
@@ -194,6 +194,7 @@ class _AddProjectWidgetState extends State<AddProjectWidget> {
                         setProject(
                             addProjectController.nomProjetController.text,
                             addProjectController.descProjetController.text,
+                            "en cours",
                             addProjectController.debutDateTime,
                             addProjectController.finDateTime);
 

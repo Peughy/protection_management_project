@@ -6,6 +6,7 @@ class ProjectModel {
   final String num;
   final String nomProjet;
   final String descriptionProjet;
+  final String etat;
   final DateTime dateDebut;
   final DateTime dateFin;
 
@@ -13,6 +14,7 @@ class ProjectModel {
       {required this.num,
       required this.nomProjet,
       required this.descriptionProjet,
+      required this.etat,
       required this.dateDebut,
       required this.dateFin});
 
@@ -24,6 +26,7 @@ class ProjectModel {
       num: data?['num'],
       nomProjet: data?['nomProjet'],
       descriptionProjet: data?['descriptionProjet'],
+      etat: data?["etat"],
       dateDebut: data?['dateDebut'],
       dateFin: data?['dateFin'],
     );
@@ -34,6 +37,7 @@ class ProjectModel {
       num: map['num'],
       nomProjet: map['nomProjet'],
       descriptionProjet: map['descriptionProjet'],
+      etat: map["etat"],
       dateDebut: map['dateDebut'].toDate(),
       dateFin: map['dateFin'].toDate(),
     );
@@ -44,6 +48,7 @@ class ProjectModel {
       if (num != null) "num": num,
       if (nomProjet != null) "nomProjet": nomProjet,
       if (descriptionProjet != null) "descriptionProjet": descriptionProjet,
+      if (etat != null) "etat": etat,
       if (dateDebut != null) "dateDebut": dateDebut,
       if (dateFin != null) "dateFin": dateFin,
     };

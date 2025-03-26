@@ -14,9 +14,9 @@ class AddProjectController {
 
   bool isLoading = false;
 
-  Future<void> addProject(String nom, String desc, DateTime? debut, DateTime? fin) async {
+  Future<void> addProject(String nom, String desc, String etat, DateTime? debut, DateTime? fin) async {
     String num = "protect-project-${Random().nextInt(9999)+1111}";
-    final projectModel = ProjectModel(num: num, nomProjet: nom, descriptionProjet: desc, dateDebut: debut!, dateFin: fin!);
+    final projectModel = ProjectModel(num: num, nomProjet: nom, descriptionProjet: desc, etat: etat, dateDebut: debut!, dateFin: fin!);
 
     final docRef = db
     .collection("projets")
