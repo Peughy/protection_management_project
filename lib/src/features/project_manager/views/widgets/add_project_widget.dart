@@ -194,7 +194,7 @@ class _AddProjectWidgetState extends State<AddProjectWidget> {
                         setProject(
                             addProjectController.nomProjetController.text,
                             addProjectController.descProjetController.text,
-                            "en cours",
+                            "attente",
                             addProjectController.debutDateTime,
                             addProjectController.finDateTime);
 

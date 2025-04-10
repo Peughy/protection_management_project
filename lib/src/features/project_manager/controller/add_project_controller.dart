@@ -25,6 +25,6 @@ class AddProjectController {
       toFirestore: (ProjectModel project, options) => project.toFirestore(),
     );
 
-    await docRef.add(projectModel);
+    await docRef.doc(projectModel.num).set(projectModel);
   }
 }

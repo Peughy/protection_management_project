@@ -4,6 +4,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:protection_management_project/firebase_options.dart';
 import 'package:protection_management_project/src/constants/color.dart';
 import 'package:protection_management_project/src/constants/notifier.dart';
+import 'package:protection_management_project/src/features/auth_manager/signin_page.dart';
 import 'package:protection_management_project/src/features/project_manager/views/project_manager.dart';
 import 'package:protection_management_project/src/features/treatment_project_manager/views/treatement_project_manager.dart';
 import 'package:protection_management_project/start_page.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         brightness: isDark ? Brightness.dark : Brightness.light
       ),
-      home: const TreatementProjectManager(),
+      home: const SigninPage(),
     );
     },);
   }

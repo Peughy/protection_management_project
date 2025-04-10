@@ -46,10 +46,10 @@ class _ProjectWidgetState extends State<ProjectWidget> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(radius),
               border: Border(
-                top: BorderSide(color: (widget.allProjects.etat == "en cours") ? mainColor : (widget.allProjects.etat == "annuler") ? Colors.red : Colors.green, width: 2),
-                bottom: BorderSide(color: (widget.allProjects.etat == "en cours") ? mainColor : (widget.allProjects.etat == "annuler") ? Colors.red : Colors.green, width: 2),
-                left: BorderSide(color: (widget.allProjects.etat == "en cours") ? mainColor : (widget.allProjects.etat == "annuler") ? Colors.red : Colors.green, width: 2),
-                right: BorderSide(color: (widget.allProjects.etat == "en cours") ? mainColor : (widget.allProjects.etat == "annuler") ? Colors.red : Colors.green, width: 2),
+                top: BorderSide(color: (widget.allProjects.etat == "en cours") ? mainColor : (widget.allProjects.etat == "annuler") ? Colors.red : (widget.allProjects.etat == "attente") ? Colors.indigo: Colors.green, width: 2),
+                bottom: BorderSide(color: (widget.allProjects.etat == "en cours") ? mainColor : (widget.allProjects.etat == "annuler") ? Colors.red : (widget.allProjects.etat == "attente") ? Colors.indigo: Colors.green, width: 2),
+                left: BorderSide(color: (widget.allProjects.etat == "en cours") ? mainColor : (widget.allProjects.etat == "annuler") ? Colors.red : (widget.allProjects.etat == "attente") ? Colors.indigo: Colors.green, width: 2),
+                right: BorderSide(color: (widget.allProjects.etat == "en cours") ? mainColor : (widget.allProjects.etat == "annuler") ? Colors.red : (widget.allProjects.etat == "attente") ? Colors.indigo: Colors.green, width: 2),
               )),
           child: Column(
             children: [
@@ -59,7 +59,7 @@ class _ProjectWidgetState extends State<ProjectWidget> {
                   widget.allProjects.nomProjet,
                   style: GoogleFonts.montserrat(
                       fontSize: 22,
-                      color: (widget.allProjects.etat == "en cours") ? mainColor : (widget.allProjects.etat == "annuler") ? Colors.red : Colors.green,
+                      color: (widget.allProjects.etat == "en cours") ? mainColor : (widget.allProjects.etat == "annuler") ? Colors.red :(widget.allProjects.etat == "attente") ? Colors.indigo: Colors.green,
                       fontWeight: FontWeight.w600),
                 ),
               ),
@@ -107,14 +107,14 @@ class _ProjectWidgetState extends State<ProjectWidget> {
                   Icon(
                     Icons.person,
                     size: 22,
-                    color: (widget.allProjects.etat == "en cours") ? mainColor : (widget.allProjects.etat == "annuler") ? Colors.red : Colors.green,
+                    color: (widget.allProjects.etat == "en cours") ? mainColor : (widget.allProjects.etat == "annuler") ? Colors.red :(widget.allProjects.etat == "attente") ? Colors.indigo: Colors.green,
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Text(
                     "Aucun",
-                    style: TextStyle(color: (widget.allProjects.etat == "en cours") ? mainColor : (widget.allProjects.etat == "annuler") ? Colors.red : Colors.green, fontSize: 16),
+                    style: TextStyle(color: (widget.allProjects.etat == "en cours") ? mainColor : (widget.allProjects.etat == "annuler") ? Colors.red :(widget.allProjects.etat == "attente") ? Colors.indigo: Colors.green, fontSize: 16),
                   )
                 ],
               ),

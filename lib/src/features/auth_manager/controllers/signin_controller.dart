@@ -42,32 +42,31 @@ class SigninController {
               email: usercredential.user!.email,
               compte: _compte,
               jokers: _jokers);
-        }
-        else{
-          SnackbarWidget(text: "Nous avons rencontrez une erreur - veuillez reessayer").snackbarWidget(context);
+        } else {
+          SnackbarWidget(
+                  text: "Nous avons rencontrez une erreur - veuillez reessayer",
+                  color: Colors.red)
+              .snackbarWidget(context);
         }
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == "invalid-email") {
         SnackbarWidget(
-          text: "L'adresse mail ne correspond pas",
-        ).snackbarWidget(context);
+                text: "L'adresse mail ne correspond pas", color: Colors.red)
+            .snackbarWidget(context);
       } else if (e.code == "invalid-credential") {
         SnackbarWidget(
-          text: "L'utlisateur n'as pas ete trouve",
-        ).snackbarWidget(context);
+                text: "L'utlisateur n'as pas ete trouve", color: Colors.red)
+            .snackbarWidget(context);
       } else if (e.code == "network-request-failed") {
         SnackbarWidget(
-          text: "Veuillez vous connectez a internet",
-        );
+            text: "Veuillez vous connectez a internet", color: Colors.red);
       } else if (e.code == "wrong-password") {
-        SnackbarWidget(
-          text: "Mot de passe incorect",
-        ).snackbarWidget(context);
+        SnackbarWidget(text: "Mot de passe incorect", color: Colors.red)
+            .snackbarWidget(context);
       } else {
-        SnackbarWidget(
-          text: "Erreur: ${e.message}",
-        ).snackbarWidget(context);
+        SnackbarWidget(text: "Erreur: ${e.message}", color: Colors.red)
+            .snackbarWidget(context);
       }
     }
     return null;
